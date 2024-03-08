@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "extremeview",
+	"version": "${version}",
+
+	"name": "ExtremeView",
+	"description": "Mod that increases maximum view distance",
+	"authors": [
+		"paulevs"
+	],
+	"contact": {
+		"homepage": "https://github.com/paulevsGitch/ExtremeView/releases",
+		"sources": "https://github.com/paulevsGitch/ExtremeView",
+		"issues": "https://github.com/paulevsGitch/ExtremeView/issues",
+		"discord": "https://discord.gg/qxcP8EjkUC"
+	},
+
+	"license": "LGPLv2.1",
+	"icon": "assets/extremeview/icon.png",
+
+	"environment": "*",
+	"mixins": [
+		"extremeview.mixins.client.json"
+	],
+
+	"depends": {
+		"minecraft": "1.0.0-beta.7.3"
+	}
+}

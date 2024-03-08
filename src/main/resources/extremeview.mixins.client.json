@@ -1,0 +1,17 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "paulevs.extremeview.mixin.client",
+	"compatibilityLevel": "JAVA_17",
+	"client": [
+		"VideoSettingScreenMixin",
+		"LevelRendererMixin",
+		"GameRendererMixin",
+		"GameOptionsMixin",
+		"OptionMixin",
+		"SliderMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
