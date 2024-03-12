@@ -19,10 +19,10 @@ import java.io.PrintWriter;
 
 @Mixin(GameOptions.class)
 public abstract class GameOptionsMixin {
+	@Unique private static final StringBuffer EXTREME_VIEW_BUFFER = new StringBuffer(256);
 	@Unique private float extremeview_distance = 0.125F;
 	
 	@Shadow protected abstract float parseFloat(String string);
-	
 	@Shadow protected Minecraft minecraft;
 	
 	@Inject(method = "setFloat", at = @At("HEAD"), cancellable = true)
@@ -43,7 +43,11 @@ public abstract class GameOptionsMixin {
 	@Inject(method = "getTranslatedValue", at = @At("HEAD"), cancellable = true)
 	private void extremeview_getTranslated(Option option, CallbackInfoReturnable<String> info) {
 		if (option == Option.RENDER_DISTANCE) {
-			info.setReturnValue("View: " + ExtremeView.getBlockRadius() + " Blocks");
+			EXTREME_VIEW_BUFFER.setLength(0);
+			EXTREME_VIEW_BUFFER.append("View: ");
+			EXTREME_VIEW_BUFFER.append(ExtremeView.getBlockRadius());
+			EXTREME_VIEW_BUFFER.append(" Blocks");
+			info.setReturnValue(EXTREME_VIEW_BUFFER.toString());
 		}
 	}
 	
@@ -64,6 +68,9 @@ public abstract class GameOptionsMixin {
 		ordinal = 0
 	), locals = LocalCapture.CAPTURE_FAILSOFT)
 	private void extremeview_onSave(CallbackInfo info, PrintWriter printWriter) {
-		printWriter.println("extremeViewDistance:" + extremeview_distance);
+		EXTREME_VIEW_BUFFER.setLength(0);
+		EXTREME_VIEW_BUFFER.append("extremeViewDistance:");
+		EXTREME_VIEW_BUFFER.append(extremeview_distance);
+		printWriter.println(EXTREME_VIEW_BUFFER);
 	}
 }
